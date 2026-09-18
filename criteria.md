@@ -57,6 +57,8 @@ in at least 4 of 5 tries.
 
 ## 4. Something about your chunks
 
+At least 4 of 5 sampled chunks are a complete document, start to finish - none cut off mid-sentence
+
 <!-- YOU WRITE THIS ONE.
 
      How would you know if your chunks were the right size? Name something
@@ -70,7 +72,6 @@ in at least 4 of 5 tries.
           in my corpus turned out to be a heading with no content under it." -->
 
 
-
 **Why this target:**
 
 
@@ -79,6 +80,8 @@ in at least 4 of 5 tries.
 
 ## 5. Your choice
 
+For at least 4 of 5 test questions, the document named in the answer is the one the answer's facts actually came from - not a same topic sibling about a different residence, course or dining hall. 
+
 <!-- YOU WRITE THIS ONE TOO.
 
      Pick something you actually care about getting right. It could be about
@@ -86,6 +89,7 @@ in at least 4 of 5 tries.
      handles badly, about source attribution being correct rather than merely
      present — anything, as long as it names a number or an observable
      outcome. -->
+
 
 
 
