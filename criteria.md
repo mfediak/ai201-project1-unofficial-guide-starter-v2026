@@ -57,7 +57,7 @@ in at least 4 of 5 tries.
 
 ## 4. Something about your chunks
 
-At least 4 of 5 sampled chunks are a complete document, start to finish - none cut off mid-sentence
+At least 4 of 5 sampled chunks are a complete sentence, start to finish - none cut off mid-sentence
 
 <!-- YOU WRITE THIS ONE.
 
