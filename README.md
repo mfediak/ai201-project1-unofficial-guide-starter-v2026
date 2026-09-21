@@ -27,6 +27,8 @@ Maria, campus_life
 
      Milestone 5. -->
 
+     I picked the campus_life courpus which would answer any types of questions related to a college. The system would answer questions that are relevant to the documents. The user can ask a question like "when do study abroad applications open?" and get a concrete answer with the source. 
+
 ## Chunking Strategy
 
 **Chunk size:**
@@ -42,8 +44,7 @@ Maria, campus_life
 
      Milestone 3. -->
 
-     For the chosen corpus, the documents range from 183-554 characters, on average ~319. Each file contains a header along with 2-4 short paragraphs of the single topic. The current chunk size of 800 is already larger than the longest document (554). I have decided to set CHUNK_SIZE closer to 600 rather than 800 so the number would be big enough to hold the entire post. For overlap it would be set as low - 60 characters
-     as the safety margin in case the doc exceeds the CHUNK_SIZE. 
+     For the chosen corpus, the documents range from 183-554 characters, on average ~319. Each file contains a header along with 2-4 short paragraphs of the single topic. The current chunk size of 800 is already larger than the longest document (554). I have decided to set CHUNK_SIZE closer to 600 rather than 800 so the number would be big enough to hold the entire post. For overlap it would be set as low - 60 characters as the safety margin in case the doc exceeds the CHUNK_SIZE. 
 
 ## Sample Chunks
 
@@ -114,10 +115,19 @@ Laundry costs $1.75 wash, $1.75 dry, app-based. On noise: moderate; the building
 
 **Question:**
 
+Question: What do students say about wait times at Commons during lunch?
+
+Answer using only the documents above, and name the file you used.
+
 **Answer:**
 
-```
-```
+According to the document, the wait figure at Kestrel Commons is 20 to 25 minutes between 12:15 and 1:00. 
+
+Source: dining_kestrel_commons_followup.txt
+
+Sources retrieved: dining_halden_hall_followup.txt, dining_kestrel_commons_followup.txt, dining_north_kitchen_followup.txt, dining_the_ridgeway_cafe_followup.txt
+
+0 model calls this session, 1 served from cache
 
 **My relevance cutoff:**
 
@@ -130,9 +140,25 @@ Laundry costs $1.75 wash, $1.75 dry, app-based. On noise: moderate; the building
 
      Milestone 4. -->
 
+     I set 0.70 as the cutoff number in config.py that way the third question would be within in the cutoff (question where to sit in library with distance 0.639)
+
+
 | Question | In corpus? | Best distance |
 |---|---|---|
-|  |  |  |
+| What do students say about wait times at Commons during lunch? | Y | 0.308 |
+| Would I be able to buy a east lot permit at any time? | Y | 0.404 |
+| What do students say about where to sit at the libary? | Y | 0.639 |
+| Which study rooms have whiteboards? | Y | 0.372 |
+| When do study abroad applications open? | Y | 0.234 | 
+
+out of scope questions 
+| What is the capital of Mongolia? | N | 0.825 |
+| How do I change the oil in a diesel engine? | N | 0.934|
+| Who won the 1994 World Cup? | N | 0.886 | 
+| What is the recommended dosage of ibuprofen for a headache? | N | 0.844 |
+| How do I write a for loop in Rust? | N | 0.896 | 
+
+
 
 ## How I Used AI
 
@@ -147,7 +173,10 @@ Laundry costs $1.75 wash, $1.75 dry, app-based. On noise: moderate; the building
 
 **1.**
 
+I used Claude to write the chunking function from the notes. I made sure the chunks contained complete senteces rather than fragments. Also, I made sure it was easy to read by having space in between header and the paragraphs.
+
 **2.**
+I also used AI to explain to me which chunk size and overlap I should consider and why. So as a result I set the chunk size to 600 and overlap to 60. 
 
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never

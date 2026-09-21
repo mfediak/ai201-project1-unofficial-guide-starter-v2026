@@ -26,6 +26,7 @@ contains the answer.
 <!-- e.g. "One of my questions is about a topic only two documents mention, so
      I expect that one to be hard." -->
 
+It is important in case multiple documents share the same topic. 
 ---
 
 ## 2. Every answer names a source
@@ -35,6 +36,8 @@ Every answer the system produces names at least one source document.
 **Why this target:**
 <!-- Why all five and not four? What about your setup makes that achievable —
      or what would have to go wrong for it not to be? -->
+
+It is important for all four so that the answer will be traceable. 
 
 ---
 
@@ -52,6 +55,7 @@ in at least 4 of 5 tries.
 **Why this target:**
 <!-- What did your distances look like when you set the cutoff in Milestone 4?
      Was there a clean gap, or did the two groups overlap? -->
+There was a clear gap between the distances so I had to make sure the distance was reasonable enough so all in scope questions would be answered without room for out of scope. 
 
 ---
 
@@ -74,7 +78,7 @@ At least 4 of 5 sampled chunks are a complete sentence, start to finish - none c
 
 **Why this target:**
 
-
+This is important so that the answers come out as complete instead of fragmented. 
 
 ---
 
@@ -95,7 +99,7 @@ For at least 4 of 5 test questions, the document named in the answer is the one 
 
 **Why this target:**
 
-
+This is important as questions from a different domain with the same vocabulary could be accidentally caught. 
 
 ---
 
