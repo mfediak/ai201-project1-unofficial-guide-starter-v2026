@@ -205,15 +205,56 @@ I also used AI to explain to me which chunk size and overlap I should consider a
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | met|
+| 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 | met |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | met |
+| 4. | At least 4 of 5 sampled chunks are a complete sentence, start to finish - none cut off mid-sentence| 4 of 5| 5/5| 5/5| 5/5 | MET |
+| 5. | the document named in the answer is the one the answer's facts actually came | 4 of 5| 5/5| 5/5 | 5/5 | MET |
 
 <!-- Underneath, paste the REAL output for each criterion from one of your
      runs — the actual text your system produced, not a description of it.
      Name the file and function that produced it. -->
+
+     all text is pulled out from results/run_2026-09-23_1611_before.md
+
+1. store.py::search
+
+```
+According to *dining_kestrel_commons_followup.txt*, the wait time at Kestrel Commons between 12:15 and 1:00 is 20 to 25 minutes.
+
+2. generate.py::answer_from_chunks
+
+Based on the documents, the third floor of the library is silent and enforced, the second floor is quiet in theory, and the basement has the only outlets at every seat, making it full from about 10am (from `study_library_hours.txt`).
+
+3. gate.py::check
+| Out-of-scope question | Best distance | Gate |
+|---|---|---|
+| What is the capital of Mongolia? | 0.825 | refused |
+| How do I change the oil in a diesel engine? | 0.934 | refused |
+| Who won the 1994 World Cup? | 0.886 | refused |
+| What is the recommended dosage of ibuprofen for a headache? | 0.844 | refused |
+| How do I write a for loop in Rust? | 0.896 | refused |
+
+4. chunker.py::split_documents
+
+```
+Study abroad applications open in October for the following academic year. 
+
+Source: admin_study_abroad.txt
+```
+
+5. generate.py::answer_from_chunks
+
+
+- Best distance: 0.4037 (passed the gate)
+- Sources retrieved: admin_parking_permits.txt, admin_pass_fail_option.txt, advising_registration.txt, dining_halden_hall.txt
+
+```
+Yes, the east lot never sells out because it is a 12-minute walk. 
+
+Source: admin_parking_permits.txt
+
+
 
 ## Verdicts
 
