@@ -208,8 +208,9 @@ I also used AI to explain to me which chunk size and overlap I should consider a
 | 1. Retrieved chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | met|
 | 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 | met |
 | 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | met |
-| 4. | At least 4 of 5 sampled chunks are a complete sentence, start to finish - none cut off mid-sentence| 4 of 5| 5/5| 5/5| 5/5 | MET |
-| 5. | the document named in the answer is the one the answer's facts actually came | 4 of 5| 5/5| 5/5 | 5/5 | MET |
+| 4. For every question, no retreived chunks would be under 150 characters. 
+ | 4 of 5| 5/5| 5/5| 5/5 | MET |
+| 5.the document named in the answer is the one the answer's facts actually came | 4 of 5| 5/5| 5/5 | 5/5 | MET |
 
 <!-- Underneath, paste the REAL output for each criterion from one of your
      runs — the actual text your system produced, not a description of it.
@@ -252,7 +253,7 @@ Source: admin_study_abroad.txt
 ```
 Yes, the east lot never sells out because it is a 12-minute walk. 
 
-Source: admin_parking_permits.txt
+Source: admin_parking_permits.txt```
 
 
 
@@ -269,11 +270,12 @@ Source: admin_parking_permits.txt
 
 | # | Criterion | Verdict | How I decided |
 |---|---|---|---|
-| 1 |  |  |  |
-| 2 |  |  |  |
-| 3 |  |  |  |
-| 4 |  |  |  |
-| 5 |  |  |  |
+| 1 | Retrieved chunk contains the answer | MET | 5/5 across all three runs which meets the 4 of 5 target |
+| 2 | Every answer names a source | MET | 5/5 across all three runs which meets the requirement for all targets |
+| 3 | Gate stops out-of-corpus questions | MET | 5/5 were refused which meets the 4 of 5 target |
+| 4 | For every question, no retreived chunks would be under 150 characters. 
+ | MET | 88/88 chunks at or above 150 characters (deterministic single pass) which clears the target of 5 of 5|
+| 5 | the document named in the answer is the one the answer's facts actually came | MET | 5/5 across all 3 runs all of which named a sourced that matched where the actual fact came from  |
 
 ## Diagnoses
 
