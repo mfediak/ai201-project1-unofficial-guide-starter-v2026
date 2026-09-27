@@ -63,7 +63,7 @@ There was a clear gap between the distances so I had to make sure the distance w
 At least 4 of 5 sampled chunks are a complete sentence, start to finish - none cut off mid-sentence
 
 Changed to :
-For every question, no retreived chunks would be under 150 characters. 
+For every question, no retreived chunks would be under 185 characters. 
 
 Revised this criteria since the chunker.py::split_documents already 
 never actually splits anything so the "no chunk can be cut off mid-sentence" can't fail no matter how the system performs. 

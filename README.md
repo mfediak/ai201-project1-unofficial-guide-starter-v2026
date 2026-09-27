@@ -208,7 +208,7 @@ I also used AI to explain to me which chunk size and overlap I should consider a
 | 1. Retrieved chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | met|
 | 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 | met |
 | 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | met |
-| 4. For every question, no retreived chunks would be under 150 characters. 
+| 4. At least 4 of 5 sampled chunks are a complete sentence, start to finish - none cut off mid-sentence
  | 4 of 5| 5/5| 5/5| 5/5 | MET |
 | 5.the document named in the answer is the one the answer's facts actually came | 4 of 5| 5/5| 5/5 | 5/5 | MET |
 
@@ -273,9 +273,8 @@ Source: admin_parking_permits.txt```
 | 1 | Retrieved chunk contains the answer | MET | 5/5 across all three runs which meets the 4 of 5 target |
 | 2 | Every answer names a source | MET | 5/5 across all three runs which meets the requirement for all targets |
 | 3 | Gate stops out-of-corpus questions | MET | 5/5 were refused which meets the 4 of 5 target |
-| 4 | For every question, no retreived chunks would be under 150 characters. 
- | MET | 88/88 chunks at or above 150 characters (deterministic single pass) which clears the target of 5 of 5|
-| 5 | the document named in the answer is the one the answer's facts actually came | MET | 5/5 across all 3 runs all of which named a sourced that matched where the actual fact came from  |
+| 4 | At least 4 of 5 sampled chunks are a complete sentence, start to finish - none cut off mid-sentence | MET | none of the chunks are cut off mid-sentence which clears the target of 5 of 5|
+| 5 | the document named in the answer is the one the answer's facts actually came from | MET | 5/5 across all 3 runs all of which named a sourced that matched where the actual fact came from  |
 
 ## Diagnoses
 
@@ -297,14 +296,20 @@ Source: admin_parking_permits.txt```
 
      Milestone 3. -->
 
+     I haven't missed any of the targets so I changed criteria 4 into: For every question, no retreived chunks would be under 185 characters. Before all of the runs went through since the hunker.py::split_documents already doesn't split anything. This means that the system can't produce fragmented chunks no matter what. However, I am not considering making adjustments to the rest of the criteria since each of them tests for different targets. 
+
+
 ## The Improvement
 
+
 **What I changed:**
+I have decided to lower the chunk size from 600 to 300 as an experiment. 
 
 **Why I picked it:**
 
 <!-- Connect it to a specific diagnosis above in one sentence. If you can't,
      you picked a fix because it sounded impressive. -->
+Right now, hunker.py::split_documents doesn't really split anything so I decided to try lowering the chunk size. 
 
 ### Run Log — After
 
@@ -313,11 +318,11 @@ Source: admin_parking_permits.txt```
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | MET  |
+| 4. | For every question, no retreived chunks would be under 185 characters.| 0 chunks under floor | 18 under | 18 under| MISSED|
+| 5.| the document named in the answer is the one the answer's facts actually came| 5/5| 5/5| 5/5| MET|
 
 **Did it help?**
 
@@ -327,6 +332,7 @@ Source: admin_parking_permits.txt```
      tell.
 
      Milestone 4. -->
+     Changing the chunk size to 300 backfired as 88 chunks became 140. The shortest chunk was 10 characters and 18 of them were under 185 characters. These numbers confirm that the target of no chunks under 185 characters was missed.  
 
 ## What's Still Broken
 
