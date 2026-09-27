@@ -178,6 +178,9 @@ I used Claude to write the chunking function from the notes. I made sure the chu
 **2.**
 I also used AI to explain to me which chunk size and overlap I should consider and why. So as a result I set the chunk size to 600 and overlap to 60. 
 
+**3**
+I used AI to help spot the patterns in my results. Afterwards, I decided that criteria 4 needs to actually be revised since because of the chunker function never splitting the documents meant that the targets would always be met. 
+
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never
      claims earns nothing.
@@ -343,6 +346,9 @@ Right now, hunker.py::split_documents doesn't really split anything so I decided
      not.
 
      Milestone 5. -->
+     After the fix now 18 out of the 140 chunks now are under the floor. The chunker splits on paragraph boundaries, so a short header line before the first paragraph break becomes its own tiny chunk. 
+
+     For instance a chunk from dining_the_atrium.txt#0 (10 char) included only the header since it had to be under the 300 char limit. For this reason only the first paragraph - the header was considered. I would fix this by merging any chunk under some floor into its neighbor rather than blindly returning CHUNK_SIZE.
 
 ## What I'd Do Differently
 
@@ -350,3 +356,4 @@ Right now, hunker.py::split_documents doesn't really split anything so I decided
      differently, and why?
 
      Milestone 5. -->
+I would keep my change of criteria 4 to have a character count of 185 but would rewrite parts of the chunker function. By doing so, I would ensure that the chunk quality is improved. 
